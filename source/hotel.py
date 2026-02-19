@@ -36,7 +36,7 @@ class Hotel:
             with open(filename, "w", encoding="uft8") as f:
                 json.dump([h.to_dict() for h in hotels], f, indent=4)
         except IOError as e:
-            print(f"Error, no se pudo guardar el archivo: {e}")
+            print(f"Error, no se pudo guardar el archivo: {e}.")
     
     @staticmethod
     def load_from_file(filename="hotels.json"):
@@ -48,15 +48,26 @@ class Hotel:
                 data = json.load(f)
                 return [Hotel(**h) for h in data]
         except (json.JSONDecodeError, TypeError, ValueError) as e:
-            print(f"Error, no se pudo leer el archivo {filename}: {e}")
+            print(f"Error, no se pudo leer el archivo {filename}: {e}.")
             return []
     
     @staticmethod
     def create_hotel(hotels, hotel_id, name, location, rooms):
         """Creación e incorporación de un nuevo hotel"""
         if any(h.hotel_id == hotel_id for h in hotels):
-            print(f"Error, el ID del hotel {hotel_id} ya existe")
+            print(f"Error, el ID del hotel {hotel_id} ya existe.")
             return False
         new_hotel = Hotel(hotel_id, name, location, rooms)
         hotels.append(new_hotel)
         return True
+    
+    @staticmethod
+    def delete_hotel(hotels, hotel_id):
+        """Eliminación de un hotel del listado de hoteles"""
+        inicial_lenth = len(hotels)
+        hotels[:] = [h for h in hotels if h.hotel_id != hotel_id]
+        if len(hotels) < inicial_lenth:
+            return True
+        print(f"Error, no se encontro el hotel con el ID {hotel_id}.")
+        return False
+    
