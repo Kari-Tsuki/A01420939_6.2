@@ -24,7 +24,7 @@ class Customer:
             "name": self.name,
             "email": self.email,
         }
-    
+
     @staticmethod
     def save_to_file(customers, filename="customers.json"):
         """Guardar la lista de customers en un archivo JSON"""
