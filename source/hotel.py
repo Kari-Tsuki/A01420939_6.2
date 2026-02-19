@@ -71,3 +71,19 @@ class Hotel:
         print(f"Error, no se encontro el hotel con el ID {hotel_id}.")
         return False
     
+    def display_info(self):
+        """Muestra la información de la instancia actual"""
+        print(f"ID: {self.hotel_id} | Hotel: {self.hotel_id} | "
+              f"Ubicación: {self.location} | Habitaciones: {self.rooms}"
+        )
+    
+    def display_hotel(hotels, hotel_id):
+        """Muestra la información de un hotel"""
+        for hotel in hotels:
+            if hotel.hotel_id == hotel_id:
+                hotel.display_info()
+                return True
+        print(f"Error, no se encontro un hotel con el ID: {hotel_id}")
+        return False
+    
+    
