@@ -38,4 +38,17 @@ class Hotel:
         except IOError as e:
             print(f"Error, no se pudo guardar el archivo: {e}")
     
+    @staticmethod
+    def load_from_file(filename="hotels.json"):
+        """Cargar la lista de hoteles de un archivo JSON"""
+        if not os.path.exists(filename):
+            return []
+        try:
+            with open(filename, "r", encoding="uft8") as f:
+                data = json.load(f)
+                return [Hotel(**h) for h in data]
+        except (json.JSONDecodeError, TypeError, ValueError) as e:
+            print(f"Error, no se pudo leer el archivo {filename}: {e}")
+            return []
+    
     
