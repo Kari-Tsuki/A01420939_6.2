@@ -83,7 +83,7 @@ class Hotel:
             if hotel.hotel_id == hotel_id:
                 hotel.display_info()
                 return True
-        print(f"Error, no se encontro un hotel con el ID: {hotel_id}")
+        print(f"Error, no se encontro un hotel con el ID: {hotel_id}.")
         return False
     
     def modify_hotel(self, name=None, location=None, rooms=None):
@@ -95,4 +95,14 @@ class Hotel:
         if rooms is not None:
             self.rooms = rooms
 
+    def reserve_room(self):
+        """Reserva una de las habitaciones del hotel"""
+        if self.rooms > 0:
+            self.rooms -= 1
+            return True
+        print(f"No ha habitaciones disponibles en {self.name}.")
+        return False
     
+    def cancel_reservation(self):
+        """Cancela la reservacion de una de las habitaciones del hotel"""
+        self.rooms += 1
