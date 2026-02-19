@@ -12,7 +12,7 @@ class Customer:
     """Clase para la administración de los clientes"""
 
     def __init__(self, customer_id, name, email):
-        "Se crea un nuevo objeto 'customer'"
+        """Se crea un nuevo objeto 'customer'"""
         self.customer_id = customer_id
         self.name = name
         self.email = email
@@ -60,9 +60,9 @@ class Customer:
     @staticmethod
     def delete_customer(customers, customer_id):
         """Eliminación de un cliente del listado de clientes"""
-        inicial_length = len(customers)
+        initial_length = len(customers)
         customers[:] = [c for c in customers if c.customer_id != customer_id]
-        if len(customers) < inicial_length:
+        if len(customers) < initial_length:
             return True
         print(f"Error, no se encontro el cliente con el ID {customer_id}.")
         return False

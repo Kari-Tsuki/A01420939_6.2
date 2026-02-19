@@ -14,7 +14,7 @@ class Hotel:
     """Clase para la administración de los hoteles"""
 
     def __init__(self, hotel_id, name, location, rooms):
-        "Se crea un nuevo objeto 'Hotel'"
+        """Se crea un nuevo objeto 'Hotel'"""
         self.hotel_id = hotel_id
         self.name = name
         self.location = location
@@ -64,9 +64,9 @@ class Hotel:
     @staticmethod
     def delete_hotel(hotels, hotel_id):
         """Eliminación de un hotel del listado de hoteles"""
-        inicial_length = len(hotels)
+        initial_length = len(hotels)
         hotels[:] = [h for h in hotels if h.hotel_id != hotel_id]
-        if len(hotels) < inicial_length:
+        if len(hotels) < initial_length:
             return True
         print(f"Error, no se encontro el hotel con el ID {hotel_id}.")
         return False
