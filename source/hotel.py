@@ -86,4 +86,13 @@ class Hotel:
         print(f"Error, no se encontro un hotel con el ID: {hotel_id}")
         return False
     
+    def modify_hotel(self, name=None, location=None, rooms=None):
+        """Modifica los datos de un hotel"""
+        if name:
+            self.name = name
+        if location:
+            self.location = location
+        if rooms is not None:
+            self.rooms = rooms
+
     
