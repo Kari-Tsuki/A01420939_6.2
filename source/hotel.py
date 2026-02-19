@@ -19,16 +19,16 @@ class Hotel:
         self.name = name
         self.location = location
         self.rooms = rooms
-    
+
     def to_dict(self):
         """Convierte el objeto 'Hotel' en un diccionario"""
-        return{
+        return {
             "hotel_id": self.hotel_id,
             "name": self.name,
             "location": self.location,
             "rooms": self.rooms
         }
-    
+
     @staticmethod
     def save_to_file(hotels, filename="hotels.json"):
         """Guardar la lista de hoteles en un archivo JSON"""
@@ -37,7 +37,7 @@ class Hotel:
                 json.dump([h.to_dict() for h in hotels], f, indent=4)
         except IOError as e:
             print(f"Error, no se pudo guardar el archivo: {e}.")
-    
+
     @staticmethod
     def load_from_file(filename="hotels.json"):
         """Cargar la lista de hoteles de un archivo JSON"""
@@ -50,7 +50,7 @@ class Hotel:
         except (json.JSONDecodeError, TypeError, ValueError) as e:
             print(f"Error, no se pudo leer el archivo {filename}: {e}.")
             return []
-    
+
     @staticmethod
     def create_hotel(hotels, hotel_id, name, location, rooms):
         """Creación e incorporación de un nuevo hotel"""
@@ -60,7 +60,7 @@ class Hotel:
         new_hotel = Hotel(hotel_id, name, location, rooms)
         hotels.append(new_hotel)
         return True
-    
+
     @staticmethod
     def delete_hotel(hotels, hotel_id):
         """Eliminación de un hotel del listado de hoteles"""
@@ -70,14 +70,13 @@ class Hotel:
             return True
         print(f"Error, no se encontro el hotel con el ID {hotel_id}.")
         return False
-    
+
     def display_info(self):
         """Muestra la información de la instancia actual"""
         print(f"ID: {self.hotel_id} | Hotel: {self.hotel_id} | "
-              f"Ubicación: {self.location} | Habitaciones: {self.rooms}"
-        )
-    
-    def display_hotel(hotels, hotel_id):
+              f"Ubicación: {self.location} | Habitaciones: {self.rooms}")
+
+    def display_hotel(self, hotels, hotel_id):
         """Muestra la información de un hotel"""
         for hotel in hotels:
             if hotel.hotel_id == hotel_id:
@@ -85,7 +84,7 @@ class Hotel:
                 return True
         print(f"Error, no se encontro un hotel con el ID: {hotel_id}.")
         return False
-    
+
     def modify_hotel(self, name=None, location=None, rooms=None):
         """Modifica los datos de un hotel"""
         if name:
@@ -102,7 +101,7 @@ class Hotel:
             return True
         print(f"No ha habitaciones disponibles en {self.name}.")
         return False
-    
+
     def cancel_reservation(self):
         """Cancela la reservacion de una de las habitaciones del hotel"""
         self.rooms += 1
