@@ -29,4 +29,13 @@ class Hotel:
             "rooms": self.rooms
         }
     
+    @staticmethod
+    def save_to_file(hotels, filename="hotels.json"):
+        """Guardar la lista de hoteles en un archivo JSON"""
+        try:
+            with open(filename, "w", encoding="uft8") as f:
+                json.dump([h.to_dict() for h in hotels], f, indent=4)
+        except IOError as e:
+            print(f"Error, no se pudo guardar el archivo: {e}")
+    
     
