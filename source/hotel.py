@@ -33,7 +33,7 @@ class Hotel:
     def save_to_file(hotels, filename="hotels.json"):
         """Guardar la lista de hoteles en un archivo JSON"""
         try:
-            with open(filename, "w", encoding="uft-8") as f:
+            with open(filename, "w", encoding="utf-8") as f:
                 json.dump([h.to_dict() for h in hotels], f, indent=4)
         except IOError as e:
             print(f"Error, no se pudo guardar el archivo: {e}.")
@@ -44,7 +44,7 @@ class Hotel:
         if not os.path.exists(filename):
             return []
         try:
-            with open(filename, "r", encoding="uft-8") as f:
+            with open(filename, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 return [Hotel(**h) for h in data]
         except (json.JSONDecodeError, TypeError, ValueError) as e:
