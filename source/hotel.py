@@ -51,4 +51,12 @@ class Hotel:
             print(f"Error, no se pudo leer el archivo {filename}: {e}")
             return []
     
-    
+    @staticmethod
+    def create_hotel(hotels, hotel_id, name, location, rooms):
+        """Creación e incorporación de un nuevo hotel"""
+        if any(h.hotel_id == hotel_id for h in hotels):
+            print(f"Error, el ID del hotel {hotel_id} ya existe")
+            return False
+        new_hotel = Hotel(hotel_id, name, location, rooms)
+        hotels.append(new_hotel)
+        return True
