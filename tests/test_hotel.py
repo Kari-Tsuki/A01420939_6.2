@@ -31,7 +31,8 @@ class TestHotel(unittest.TestCase):
     def test_create_duplicate_hotel(self):
         """Prueba que no se pueda crear un hotel con un ID ya existente."""
         Hotel.create_hotel(self.hotels, 1, "Hotel Test", "CDMX", 10)
-        result = Hotel.create_hotel(self.hotels, 1, "Hotel Duplicado", "MTY", 5)
+        result = Hotel.create_hotel(self.hotels, 1, "Hotel Duplicado",
+                                    "MTY", 5)
         self.assertFalse(result)
         self.assertEqual(len(self.hotels), 1)
 
@@ -58,22 +59,22 @@ class TestHotel(unittest.TestCase):
     def test_reserve_and_cancel_room(self):
         """Prueba la reserva y cancelación de habitaciones."""
         hotel = Hotel(1, "Hotel Test", "CDMX", 1)
-        
+
         self.assertTrue(hotel.reserve_room())
         self.assertEqual(hotel.rooms, 0)
-        
+
         self.assertFalse(hotel.reserve_room())
-        
+
         hotel.cancel_reservation()
         self.assertEqual(hotel.rooms, 1)
 
     def test_save_and_load_file(self):
         """Prueba guardar los datos en un JSON y cargarlos de vuelta."""
         Hotel.create_hotel(self.hotels, 1, "Hotel JSON", "Cancún", 50)
-        
+
         Hotel.save_to_file(self.hotels, self.test_file)
         self.assertTrue(os.path.exists(self.test_file))
-        
+
         loaded_hotels = Hotel.load_from_file(self.test_file)
         self.assertEqual(len(loaded_hotels), 1)
         self.assertEqual(loaded_hotels[0].name, "Hotel JSON")
